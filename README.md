@@ -3,17 +3,17 @@
 ## 1. Hello World 
 
 - String
-
+```
  <string name="hello_worldd">Hello World!</string>
-
+```
 
 - Color
-
+```
 <color name="orange">#FF9800</color>
-
+```
 
 - Java
-
+```
 package com.tiaraapps;
 
 import android.os.Bundle;
@@ -28,10 +28,10 @@ public class HelloActivity extends AppCompatActivity {
 
     }
 }
-
+```
 
 - Layout
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -59,12 +59,12 @@ public class HelloActivity extends AppCompatActivity {
         tools:ignore="TextSizeCheck" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
+```
 
 ## 2. Scroll Movie (Ice Cold)
 
 - String
-
+```
 <string name="article_tittle">Kasus Sianida</string>
 <string name="article_subtitle">ICE COLD</string>
 <string name="article_text"> Film dokumenter Ice Cold: Murder, Coffee and Jessica Wongso memaparkan pertanyaan tak terjawab tentang persidangan yang dilalui Jessica Wongso. Dengan menyajikan perspektif baru, film ini hadir bertahun-tahun setelah kematian sahabat Jessica, Wayan Mirna Salihin.
@@ -76,10 +76,10 @@ public class HelloActivity extends AppCompatActivity {
     Kasus yang berjalan cukup lama tersebut menyita banyak perhatian dari masyarakat Indonesia. Musababnya, banyak misteri tak terjawab selama rangkaian persidangan yang panjang tersebut. Salah satunya adalah mengenai akses untuk mendapatkan bubuk sianida yang tidak bisa didapatkan oleh orang sembarangan. Selain itu, motif Jessica di balik pembunuhan tersebut pun belum menemukan jawabannya.
 
     Film dokumenter buatan Netflix ini menyoroti rangkaian persidangan yang saat itu menjadi sidang pertama yang disiarkan secara langsung di berbagai stasiun televisi Indonesia. Selain itu, kasus ini juga diliput secara intens oleh media massa, baik nasional maupun internasional.Tak hanya itu, pihak rumah produksi Beach House Pictures juga berhasil mendapatkan akses untuk mewawancarai Jessica Wongso secara langsung dari balik tahanan. Dalam video trailer yang diluncurkannya, ditampilkan juga sejumlah wawancara eksklusif yang dilakukan dengan beberapa narasumber. Mulai dari ayah dan saudara kembar  Mirna Salihin, pengacara Jessica Wongso, jurnalis yang mendalami kasus tersebut, hingga bagaimana saat itu kasus ini begitu ramai diberitakan oleh media massa Indonesia dan internasional.</string>
-
+```
 
 - Java
-
+```
 package com.tiaraapps;
 
 import android.os.Bundle;
@@ -93,10 +93,10 @@ public class SianidaActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sianida);
     }
 }
-
+```
 
 - Layout
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
@@ -134,20 +134,20 @@ public class SianidaActivity extends AppCompatActivity {
         </LinearLayout>
     </ScrollView>
 </RelativeLayout>
-
+```
 
 ## 3. Toast (Fibonaci)
 
 - String
-
+```
 <string name="button_label_toast">Toast</string>
     <string name="button_label_count">Count</string>
     <string name="count_initial_value">1</string>
     <string name="toast_message">Hello Toast!</string>
-
+```
 
 - Color
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
@@ -169,10 +169,10 @@ public class SianidaActivity extends AppCompatActivity {
     <color name="pink_terang">#ffb6c1</color>
     <color name="koral">#f08080</color>
 </resources>
-
+```
 
 - Java
-
+```
 package com.tiaraapps;
 
 import android.app.AlertDialog;
@@ -300,10 +300,10 @@ public class ToastActivity extends AppCompatActivity {
         builder.show();
     }
 }
-
+```
 
 - Layout
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -393,24 +393,24 @@ public class ToastActivity extends AppCompatActivity {
         tools:ignore="RtlCompat" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
+```
 
 ## 4. Two Activity (Send and Reply Message)
 
 - String
-
+```
  <string name="button_main">Send</string>
     <string name="editText_main">Enter Your Message Here</string>
     <string name="text_header">Messege Received</string>
     <string name="button_second">Reply</string>
     <string name="editText_second">Enter Your Reply Here</string>
     <string name="text_header_reply">Reply Received</string>
-
+```
 
 - Java
 
-SendActivity.java
-
+- SendActivity.java
+```
 package com.tiaraapps;
 
 import android.content.Intent;
@@ -447,10 +447,10 @@ public class SendActivity extends AppCompatActivity {
         finish();
     }
 }
+```
 
-
-ReplyActivity.java
-
+- ReplyActivity.java
+```
 package com.tiaraapps;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -509,12 +509,12 @@ public class ReplyActivity extends AppCompatActivity {
         }
     }
 }
-
+```
 
 - Layout
 
-activity_send.xml
-
+- activity_send.xml
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -574,11 +574,11 @@ activity_send.xml
         app:layout_constraintEnd_toStartOf="@+id/button_second"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
+```
 
+- activity_reply.xml
 
-activity_reply.xml
-
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -640,13 +640,14 @@ activity_reply.xml
         app:layout_constraintEnd_toStartOf="@+id/button_main"
         app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
-
+```
 
 ## 5. Intent (Implisit)
 
 - Java
-Alarm
 
+- Alarm
+```
 public void createAlarm(String message, int hour, int minutes) {
     Intent intent = new Intent(AlarmClock.ACTION_SET_ALARM)
             .putExtra(AlarmClock.EXTRA_MESSAGE, message)
@@ -656,9 +657,10 @@ public void createAlarm(String message, int hour, int minutes) {
         startActivity(intent);
     }
 }
+```
 
-
-
+- Maps
+```
 public void showMap(Uri geoLocation) {
     Intent intent = new Intent(Intent.ACTION_VIEW);
     intent.setData(geoLocation);
@@ -666,22 +668,22 @@ public void showMap(Uri geoLocation) {
         startActivity(intent);
     }
 }
-
+```
 
 - Menifest
 
-Alarm
-
+- Alarm
+```
 <activity ...>
     <intent-filter>
         <action android:name="android.intent.action.SET_ALARM" />
         <category android:name="android.intent.category.DEFAULT" />
     </intent-filter>
 </activity>
+```
 
-
-Maps
-
+- Maps
+```
 <activity ...>
     <intent-filter>
         <action android:name="android.intent.action.VIEW" />
@@ -689,12 +691,12 @@ Maps
         <category android:name="android.intent.category.DEFAULT" />
     </intent-filter>
 </activity>
-
+```
 
 ## 6. Fragment (Tab Layout)
 
-- *Gradle Script* => build.gradle.kts (Module :app)
-
+- Gradle Script => build.gradle.kts (Module :app)
+```
 plugins {
     id("com.android.application")
 }
@@ -736,13 +738,13 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.fragment:fragment:$fragment_version")
 }
-
+```
 - Setelah itu klik Sync now
 
 - java
 
-=> MainActivity.java
-
+- MainActivity.java
+```
 package com.tablayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -801,12 +803,12 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 }
+```
 
-
-=> Membuat file fragment dengan cara klik kanan pada MainActivity.java lalu pilih dan klik fragment, setelah itu kita pilih dan klik fragment (Blank), setelah itu kita beri nama ActionFragment, ComedyFragment, RomanceFragment. Untuk file fragment sudah sekaligus dengan file layout xml nya (code berada pada bagian res layout)
+- Membuat file fragment dengan cara klik kanan pada MainActivity.java lalu pilih dan klik fragment, setelah itu kita pilih dan klik fragment (Blank), setelah itu kita beri nama ActionFragment, ComedyFragment, RomanceFragment. Untuk file fragment sudah sekaligus dengan file layout xml nya (code berada pada bagian res layout)
 
 - ActionFragment.java :
-
+```
 package com.tablayout;
 
 import android.os.Bundle;
@@ -846,10 +848,10 @@ public class ActionFragment extends Fragment {
         return true;
     }
 }
-
+```
 
 - ComedyFragment.java :
-
+```
 package com.tablayout;
 
 import android.os.Bundle;
@@ -888,10 +890,10 @@ public class ComedyFragment extends Fragment {
         return true;
     }
 }
-
+```
 
 - RomanceFragment.java :
-
+```
 package com.tablayout;
 
 import android.os.Bundle;
@@ -930,10 +932,10 @@ public class RomanceFragment extends Fragment {
         return true;
     }
 }
+```
 
-
-=> Lalu buat java class dengan nama ViewAdapter.java, yang berisi code :
-
+- Lalu buat java class dengan nama ViewAdapter.java, yang berisi code :
+```
 package com.tablayout;
 
 import androidx.annotation.NonNull;
@@ -966,14 +968,12 @@ public class ViewAdapter extends FragmentStateAdapter {
         return 3;
     }
 }
+```
 
-
-- *res*
-
-=> values
+- values
 
 - Colors.xml :
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="black">#FF000000</color>
@@ -994,12 +994,12 @@ public class ViewAdapter extends FragmentStateAdapter {
     <color name="cream">#E6C18A</color>
     <color name="hijautua">#3F4A2F</color>
 </resources>
+```
 
-
-=> themes
+- themes
 
 - themes.xml dan themes.xml(night) (sama isi code nya) :
-
+```
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.TabLayout" parent="Theme.MaterialComponents.DayNight.DarkActionBar">
@@ -1019,12 +1019,12 @@ public class ViewAdapter extends FragmentStateAdapter {
 
     <style name="Theme.TabLayout" parent="Base.Theme.TabLayout" />
 </resources>
+```
 
-
-=> layout
+- layout
 
 - activity_main.xml :
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -1075,10 +1075,10 @@ public class ViewAdapter extends FragmentStateAdapter {
         tools:layout_editor_absoluteY="52dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
-
+```
 
 - fragment_action.xml :
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1170,8 +1170,9 @@ public class ViewAdapter extends FragmentStateAdapter {
         android:text="Dr. Stephen Strange suffered a fatal accident that damaged the motor skills of both hands. For his recovery, he visited a mysterious magician named Ancient One in Tibet."
         />
 </RelativeLayout>
+```
 
-
+```
 - fragment_comedy.xml
 
 <?xml version="1.0" encoding="utf-8"?>
@@ -1266,10 +1267,10 @@ public class ViewAdapter extends FragmentStateAdapter {
         android:maxLines="5"
         android:text="Ellen (Adinia Wirasti), a successful lawyer, is a single mom who rarely makes time for her only child Kiara (Aurora Ribero), who eventually grows up as a rebellious teenager who mostly vents her emotions on social media. They live with Agatha (Niniek L. Karim), Ellen's mother who really loves Kiara. When Agatha died of a heart attack, Kiara, who had been very close to her grandmother since childhood, was immediately shaken. The psychologist advised Ellen to take Kiara on holiday, to spend quality time to treat the times when Ellen was too busy working. They went to Sumba, spending fun moments together. Kiara went home with a happy heart. In Jakarta, Ellen was immediately greeted by a big problem at the office. The big project he is working on with Iwan (Ernest Prakasa) is in danger of falling apart. Finally, because she was busy, Ellen didn't keep her promise to watch Kiara perform in the inter-high school talent show competition that Kiara had been preparing for a long time. Kiara was angry and went to Sumba alone, the last place where she could feel a glimmer of happiness. Will Kiara be able to trust her mother again? Will Ellen be able to knit this little family back together? Watch SUSAH SIGNAL, showing in cinemas starting December 21." />
 </RelativeLayout>
-
+```
 
 - fragment_romance.xml
-
+```
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1365,11 +1366,13 @@ public class ViewAdapter extends FragmentStateAdapter {
         android:maxLines="5"
         android:text="Dita, a graphic designer with high ideals, who is afraid of failure meets Ed, an architect. The meeting, which started with a misunderstanding, ended in a warm conversation. Two people who are similar but not the same come together. Four years since their first meeting, Dita felt that their relationship was going nowhere, without realizing it, Dita always demanded that Ed be what she wanted, but in the end Ed had an accident and died. Dita was devastated and filled with guilt. Two years later, Dita tries to forget everything about Ed and tries to live her new life with Ifan, her best friend since childhood who is now her lover. Not long ago, Dita actually got 'LOOK' glasses with Augmented Reality (AR) technology which can present Ed's figure, exactly the same as real. Will Dita accept Ed's presence again or stay with Ifan?" />
 </RelativeLayout>
+```
 
-=> Pada directory drawable kita bisa tambahkan gambar untuk pict dari film yang ingin kita tampilkan, dan jangan lupa untuk menambahkan icon baseline_more_vert_24.xml dengan cara klik kanan pada drawable lalu klik New, setelah itu kita pilih dan klik Vector Asset. Setelah itu kita klik clip art lalu kita pilih icon nya, jika sudah ketemu kita klik OK lalu kita klik next
+- Pada directory drawable kita bisa tambahkan gambar untuk pict dari film yang ingin kita tampilkan, dan jangan lupa untuk menambahkan icon baseline_more_vert_24.xml dengan cara klik kanan pada drawable lalu klik New, setelah itu kita pilih dan klik Vector Asset. Setelah itu kita klik clip art lalu kita pilih icon nya, jika sudah ketemu kita klik OK lalu kita klik next
 
-=> Selanjutnya kita klik kanan pada app lalu pilih dan klik Android Resource Directory setelah itu kita beri nama "menu" lalu klik OK. Setelah itu kita buat Menu Resource File dengan nama menu_tab.xml lalu isi dengan code :
+- Selanjutnya kita klik kanan pada app lalu pilih dan klik Android Resource Directory setelah itu kita beri nama "menu" lalu klik OK. Setelah itu kita buat Menu Resource File dengan nama menu_tab.xml lalu isi dengan code :
 
+```
 <?xml version="1.0" encoding="utf-8"?>
 <menu xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1386,3 +1389,4 @@ public class ViewAdapter extends FragmentStateAdapter {
         android:id="@+id/tab_romance"
         android:title="Romance"/>
 </menu>
+```
