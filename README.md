@@ -1411,7 +1411,7 @@ public class ViewAdapter extends FragmentStateAdapter {
 </menu>
 ```
 
-**7. Exoplayer**
+## 7. Exoplayer
 
 - build.gradles.kts(Module:app)
 ```
