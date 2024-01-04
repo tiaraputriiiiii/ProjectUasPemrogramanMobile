@@ -1413,12 +1413,6 @@ public class ViewAdapter extends FragmentStateAdapter {
 
 ## 7. Exoplayer
 
-- build.gradles.kts(Module:app)
-```
-val fragment_version = "1.6.1"
-implementation("androidx.fragment:fragment:$fragment_version")
-```
-
 - Java
 
 - VideoPlayerActivity
