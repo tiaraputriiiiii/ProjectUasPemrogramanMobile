@@ -15,11 +15,6 @@ Dosen         : Donny Maulana, S.Kom., M.M.S.I.
  <string name="hello_worldd">Hello World!</string>
 ```
 
-- Color
-```
-<color name="orange">#FF9800</color>
-```
-
 - Java
   
 - HelloActivity.java
