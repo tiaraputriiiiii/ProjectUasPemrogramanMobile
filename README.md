@@ -1,10 +1,12 @@
 # ProjectUasPemrogramanMobile
 
+```
 Nama          : Tiara Putri
 NIM           : 312210064
 Kelas         : TI.22.A1
 Mata Kuliah   : Pemrograman Monile 1
-Dosen         : Donny Maulana 
+Dosen         : Donny Maulana, S.Kom., M.M.S.I.
+```
 
 ## 1. Hello World 
 
