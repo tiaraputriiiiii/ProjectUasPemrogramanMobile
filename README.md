@@ -51,7 +51,7 @@ Untuk menambahkan file gambar seperti untuk SplashScreen, Background di setiap p
 
 - Java
 
-- SplashA=Screen.java
+- SplashScreen.java
 ```
 package com.tiaraapps;
 
