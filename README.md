@@ -8,31 +8,523 @@ Mata Kuliah   : Pemrograman Monile 1
 Dosen         : Donny Maulana, S.Kom., M.M.S.I.
 ```
 
+## Launcher Splash Logo
+Pertama, yaitu membuat Launcher Splash Logo atau menampilkan logo / icon saat kita pertama kali membuka aplikasi.
+Caranya adalah :
+
+- Persiapkan gambar terlebih dahulu
+- Selanjutnya kita klik `app`, lalu klik `res` dan setelahnya kita pilih dan klik `mipmap`
+- Setelah itu klik kanan pada bagian `mipmap` , lalu pilih `new`
+- Lalu pilih dan klik `Image Asset`
+- Lalu ketika sudah terbuka, kita klik bagian `Icon Type` lalu pilih yang `Launcher Icons (Adaptive and Legacy)`
+- Lalu pada bagian `Path` kita klik logo file lalu kita pilih dan klik file gambar yang telah disiapkan sebelumnya dan klik `OK`
+- Lalu untuk ukuran logo / ikon bisa kita atur pada bagian `Resize`, Jika sudah kita klik `Next`
+- Setelah itu kita klik `Finish`, Maka logo / ikon aplikasi kita akan berubah sesuai gambar yang kita inginkan
+
+Untuk menambahkan file gambar seperti untuk SplashScreen, Background di setiap project kita bisa klik bagian `Resource Manager` lalu kita klik tanda `+`. Setelah itu kita pilih dan klik `Import Drawables`, setelah itu kita pilih dan klik file gambar yang sudah kita siapkan lalu klik `OK`. Maka gambar akan tersedia di `res` pada `drawable`.
+
+- backgroundlauncher.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/birumuda"/>
+    <item>
+        <bitmap
+            android:src="@drawable/logo"
+            android:gravity="center" />
+    </item>
+</layer-list>
+```
+
+- themes.xml
+ ```
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Splash" parent="Theme.Material3.Light">
+        <item name="android:windowBackground">@drawable/background</item>
+        <item name="android:statusBarColor">?attr/colorOnPrimary</item>
+        <item name="android:navigationBarColor">@color/white</item>
+        <!-- Customize your light theme here. -->
+    </style>
+</resources>
+```
+
+- Java
+
+- SplashA=Screen.java
+```
+package com.tiaraapps;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.os.Handler;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SplashScreen extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                startActivity(new Intent(SplashScreen.this, MenuActivity.class));
+                finish();
+            }
+        }, 2500);
+    }
+}
+```
+
+- AndroidMenifest.xml
+```
+<activity
+            android:name=".SplashScreen"
+            android:exported="true"
+            android:theme="@style/Splash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+```
+
+## Menu Utama
+
+- Layout
+
+- activity_menu.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:context=".MenuActivity">
+
+    <ImageView
+        android:id="@+id/background"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg1"
+        android:adjustViewBounds="true"
+        android:scaleType="centerCrop"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="16dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:fontFamily="monospace"
+            android:text="Menu Project"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:textSize="34sp"
+            android:textStyle="bold" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdMenu1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView0"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/helloworld" />
+
+                    <TextView
+                        android:id="@+id/textView0"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="HELLO WORLD"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdMenu2"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/count" />
+
+                    <TextView
+                        android:id="@+id/textView1"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="COUNT"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdMenu3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/icecold" />
+
+                    <TextView
+                        android:id="@+id/textView2"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="ICE COLD"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdMenu4"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/alarm" />
+
+                    <TextView
+                        android:id="@+id/textView3"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:onClick="setAlarm"
+                        android:text="SET ALARM"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="130dp"
+            android:layout_margin="5dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginEnd="5dp"
+            android:layout_marginBottom="5dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdMenu5"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/twoactivity" />
+
+                    <TextView
+                        android:id="@+id/textView4"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="TWO ACTIVITY"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdMenu6"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/maps" />
+
+                    <TextView
+                        android:id="@+id/textView5"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="MAPS"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="190dp"
+            android:layout_height="130dp"
+            android:layout_gravity="center"
+            android:layout_margin="5dp"
+            android:orientation="horizontal">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cdMenu7"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_margin="10dp"
+                android:layout_weight="1"
+                app:cardCornerRadius="20dp"
+                app:cardElevation="7dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <ImageView
+                        android:id="@+id/imageView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_margin="16dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/tv" />
+
+                    <TextView
+                        android:id="@+id/textView6"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="serif"
+                        android:text="FRAGMENT"
+                        android:textAlignment="center"
+                        android:textSize="16dp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+    </LinearLayout>
+
+</RelativeLayout>
+```
+
+- Java
+
+- MenuActivity
+```
+package com.tiaraapps;
+
+import android.content.Intent;
+import android.net.Uri;
+import android.os.Bundle;
+import android.view.View;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MenuActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_menu);
+
+        findViewById(R.id.cdMenu4).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                setAlarm();
+            }
+        });
+
+        findViewById(R.id.cdMenu1).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ketika tombolSatu ditekan, pindah ke HelloActivity
+                Intent helloworld = new Intent(MenuActivity.this, HelloActivity.class);
+                startActivity(helloworld);
+            }
+        });
+
+        findViewById(R.id.cdMenu2).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ketika tombolDua ditekan, lakukan aksi yang diinginkan
+                // Misalnya, pindah ke aktivitas lain atau jalankan fungsi khusus
+                Intent toast = new Intent(MenuActivity.this, ToastActivity.class);
+                startActivity(toast);
+            }
+        });
+
+        findViewById(R.id.cdMenu3).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ketika tombolDua ditekan, lakukan aksi yang diinginkan
+                // Misalnya, pindah ke aktivitas lain atau jalankan fungsi khusus
+                Intent sianida = new Intent(MenuActivity.this, SianidaActivity.class);
+                startActivity(sianida);
+            }
+        });
+
+        findViewById(R.id.cdMenu5).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ketika tombolDua ditekan, lakukan aksi yang diinginkan
+                // Misalnya, pindah ke aktivitas lain atau jalankan fungsi khusus
+                Intent twoactivity = new Intent(MenuActivity.this, ReplyActivity.class);
+                startActivity(twoactivity);
+            }
+        });
+
+        findViewById(R.id.cdMenu6).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Example location: Jakarta, Indonesia
+                Uri geoLocation = Uri.parse("geo:-6.2088,106.8456");
+                openMaps(geoLocation);
+            }
+        });
+
+        findViewById(R.id.cdMenu7).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // Ketika tombolDua ditekan, lakukan aksi yang diinginkan
+                // Misalnya, pindah ke aktivitas lain atau jalankan fungsi khusus
+                Intent fragment = new Intent(MenuActivity.this, FragmentActivity.class);
+                startActivity(fragment);
+            }
+        });
+    }
+
+    private void setAlarm() {
+        Intent alarm = new Intent(android.provider.AlarmClock.ACTION_SET_ALARM);
+        // Add extra details for the alarm, e.g., alarm time, label, etc.
+        // alarmIntent.putExtra(...
+        startActivity(alarm);
+    }
+    private void openMaps(Uri geoLocation) {
+        Intent maps = new Intent(Intent.ACTION_VIEW);
+        maps.setData(geoLocation);
+        if (maps.resolveActivity(getPackageManager()) != null) {
+            startActivity(maps);
+        }
+    }
+}
+```
+
 ## 1. Hello World 
 
 - String
 ```
  <string name="hello_worldd">Hello World!</string>
-```
-
-- Java
-  
-- HelloActivity.java
-```
-package com.tiaraapps;
-
-import android.os.Bundle;
-import androidx.appcompat.app.AppCompatActivity;
-
-public class HelloActivity extends AppCompatActivity {
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hello);
-
-    }
-}
 ```
 
 - Layout
@@ -68,6 +560,26 @@ public class HelloActivity extends AppCompatActivity {
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
+- Java
+  
+- HelloActivity.java
+```
+package com.tiaraapps;
+
+import android.os.Bundle;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class HelloActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hello);
+
+    }
+}
+```
+
 ## 2. Scroll Movie (Ice Cold)
 
 - String
@@ -83,25 +595,6 @@ public class HelloActivity extends AppCompatActivity {
     Kasus yang berjalan cukup lama tersebut menyita banyak perhatian dari masyarakat Indonesia. Musababnya, banyak misteri tak terjawab selama rangkaian persidangan yang panjang tersebut. Salah satunya adalah mengenai akses untuk mendapatkan bubuk sianida yang tidak bisa didapatkan oleh orang sembarangan. Selain itu, motif Jessica di balik pembunuhan tersebut pun belum menemukan jawabannya.
 
     Film dokumenter buatan Netflix ini menyoroti rangkaian persidangan yang saat itu menjadi sidang pertama yang disiarkan secara langsung di berbagai stasiun televisi Indonesia. Selain itu, kasus ini juga diliput secara intens oleh media massa, baik nasional maupun internasional.Tak hanya itu, pihak rumah produksi Beach House Pictures juga berhasil mendapatkan akses untuk mewawancarai Jessica Wongso secara langsung dari balik tahanan. Dalam video trailer yang diluncurkannya, ditampilkan juga sejumlah wawancara eksklusif yang dilakukan dengan beberapa narasumber. Mulai dari ayah dan saudara kembar  Mirna Salihin, pengacara Jessica Wongso, jurnalis yang mendalami kasus tersebut, hingga bagaimana saat itu kasus ini begitu ramai diberitakan oleh media massa Indonesia dan internasional.</string>
-```
-
-- Java
-
-- ScrollMovieActivity.java
-```
-package com.tiaraapps;
-
-import android.os.Bundle;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-public class SianidaActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sianida);
-    }
-}
 ```
 
 - Layout
@@ -147,6 +640,25 @@ public class SianidaActivity extends AppCompatActivity {
 </RelativeLayout>
 ```
 
+- Java
+
+- ScrollMovieActivity.java
+```
+package com.tiaraapps;
+
+import android.os.Bundle;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SianidaActivity extends AppCompatActivity {
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_sianida);
+    }
+}
+```
+
 ## 3. Toast (Fibonaci)
 
 - String
@@ -180,6 +692,101 @@ public class SianidaActivity extends AppCompatActivity {
     <color name="pink_terang">#ffb6c1</color>
     <color name="koral">#f08080</color>
 </resources>
+```
+
+- Layout
+
+- activity_toast.xml
+```
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:ignore="ExtraText"
+    tools:context=".ToastActivity">
+
+    <Button
+        android:id="@+id/button_limit"
+        android:layout_width="440dp"
+        android:layout_height="60dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:background="@color/colorPrimary"
+        android:onClick="setLimit"
+        android:text="Masukkan Angka Limit"
+        android:textColor="@android:color/white"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.454"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/button_count"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorPrimary"
+        android:onClick="countUp"
+        android:text="Count"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/button_restart"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
+
+    <Button
+        android:id="@+id/button_restart"
+        android:layout_width="180dp"
+        android:layout_height="80dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginEnd="10dp"
+        android:layout_marginBottom="10dp"
+        android:background="@color/colorPrimary"
+        android:onClick="restart"
+        android:text="Restart"
+        android:textColor="@android:color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="UsingOnClickInXml" />
+
+    <TextView
+        android:id="@+id/show_count"
+        android:layout_width="400dp"
+        android:layout_height="550dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="10dp"
+        android:background="@drawable/bg_count"
+        android:gravity="center_vertical"
+        android:text="1"
+        android:textAlignment="center"
+        android:textColor="@color/colorPrimary"
+        android:textSize="160sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/button_count"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/button_limit"
+        app:layout_constraintVertical_bias="0.0"
+        tools:ignore="RtlCompat" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
 - Java
@@ -315,101 +922,6 @@ public class ToastActivity extends AppCompatActivity {
 }
 ```
 
-- Layout
-
-- activity_toast.xml
-```
-<?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:ignore="ExtraText"
-    tools:context=".ToastActivity">
-
-    <Button
-        android:id="@+id/button_limit"
-        android:layout_width="440dp"
-        android:layout_height="60dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:background="@color/colorPrimary"
-        android:onClick="setLimit"
-        android:text="Masukkan Angka Limit"
-        android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.454"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
-
-    <Button
-        android:id="@+id/button_count"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/colorPrimary"
-        android:onClick="countUp"
-        android:text="Count"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/button_restart"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="UsingOnClickInXml,VisualLintButtonSize" />
-
-    <Button
-        android:id="@+id/button_restart"
-        android:layout_width="180dp"
-        android:layout_height="80dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="10dp"
-        android:layout_marginBottom="10dp"
-        android:background="@color/colorPrimary"
-        android:onClick="restart"
-        android:text="Restart"
-        android:textColor="@android:color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:ignore="UsingOnClickInXml" />
-
-    <TextView
-        android:id="@+id/show_count"
-        android:layout_width="400dp"
-        android:layout_height="550dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="10dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="10dp"
-        android:background="@drawable/bg_count"
-        android:gravity="center_vertical"
-        android:text="1"
-        android:textAlignment="center"
-        android:textColor="@color/colorPrimary"
-        android:textSize="160sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@id/button_count"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/button_limit"
-        app:layout_constraintVertical_bias="0.0"
-        tools:ignore="RtlCompat" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>
-```
-
 ## 4. Two Activity (Send and Reply Message)
 
 - String
@@ -420,110 +932,6 @@ public class ToastActivity extends AppCompatActivity {
     <string name="button_second">Reply</string>
     <string name="editText_second">Enter Your Reply Here</string>
     <string name="text_header_reply">Reply Received</string>
-```
-
-- Java
-
-- SendActivity.java
-```
-package com.tiaraapps;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-public class SendActivity extends AppCompatActivity {
-
-    public static final String EXTRA_REPLY ="com.example.android.Reply.extra.REPLY";
-
-    private EditText mReply;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_send);
-
-        mReply = findViewById(R.id.editText_second);
-
-        Intent intent = getIntent();
-        String message = intent.getStringExtra(ReplyActivity.EXTRA_MESSAGE);
-
-        TextView textView = findViewById(R.id.text_message);
-        textView.setText(message);
-    }
-    public void returnReply(View view){
-        String reply = mReply.getText().toString();
-        Intent replyIntent = new Intent();
-        setResult(RESULT_OK, replyIntent);
-        finish();
-    }
-}
-```
-
-- ReplyActivity.java
-```
-package com.tiaraapps;
-
-import androidx.appcompat.app.AppCompatActivity;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
-import android.widget.TextView;
-
-public class ReplyActivity extends AppCompatActivity {
-
-    private static final String LOG_TAG = ReplyActivity.class.getSimpleName();
-
-    public static final String EXTRA_MESSAGE = "com.example.android.SendActivity.extra.MESSAGE";
-
-    public static final int TEXT_REQUEST = 1;
-
-    private EditText mMessageEditText;
-
-    private TextView mReplyHeadTextView;
-
-    private TextView mReplyTextView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_reply);
-
-        mMessageEditText = findViewById(R.id.editText_main);
-        mReplyHeadTextView = findViewById(R.id.text_header_reply);
-        mReplyTextView = findViewById(R.id.text_message_reply);
-    }
-
-    public void LaunchSecondActivity(View view) {
-        Log.d(LOG_TAG, "Button clicked!");
-        Intent intent = new Intent(this, SendActivity.class);
-        String message = mMessageEditText.getText().toString();
-        intent.putExtra(EXTRA_MESSAGE, message);
-        startActivityForResult(intent, TEXT_REQUEST);
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == TEXT_REQUEST) {
-            if (resultCode == RESULT_OK) {
-                String reply = data.getStringExtra(SendActivity.EXTRA_REPLY);
-
-                mReplyHeadTextView.setVisibility(View.VISIBLE);
-                mReplyTextView.setText(reply);
-                mReplyTextView.setVisibility(View.VISIBLE);
-            }
-        }
-    }
-}
 ```
 
 - Layout
@@ -657,6 +1065,110 @@ public class ReplyActivity extends AppCompatActivity {
 </androidx.constraintlayout.widget.ConstraintLayout>
 ```
 
+- Java
+
+- SendActivity.java
+```
+package com.tiaraapps;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+public class SendActivity extends AppCompatActivity {
+
+    public static final String EXTRA_REPLY ="com.example.android.Reply.extra.REPLY";
+
+    private EditText mReply;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState){
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_send);
+
+        mReply = findViewById(R.id.editText_second);
+
+        Intent intent = getIntent();
+        String message = intent.getStringExtra(ReplyActivity.EXTRA_MESSAGE);
+
+        TextView textView = findViewById(R.id.text_message);
+        textView.setText(message);
+    }
+    public void returnReply(View view){
+        String reply = mReply.getText().toString();
+        Intent replyIntent = new Intent();
+        setResult(RESULT_OK, replyIntent);
+        finish();
+    }
+}
+```
+
+- ReplyActivity.java
+```
+package com.tiaraapps;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+public class ReplyActivity extends AppCompatActivity {
+
+    private static final String LOG_TAG = ReplyActivity.class.getSimpleName();
+
+    public static final String EXTRA_MESSAGE = "com.example.android.SendActivity.extra.MESSAGE";
+
+    public static final int TEXT_REQUEST = 1;
+
+    private EditText mMessageEditText;
+
+    private TextView mReplyHeadTextView;
+
+    private TextView mReplyTextView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_reply);
+
+        mMessageEditText = findViewById(R.id.editText_main);
+        mReplyHeadTextView = findViewById(R.id.text_header_reply);
+        mReplyTextView = findViewById(R.id.text_message_reply);
+    }
+
+    public void LaunchSecondActivity(View view) {
+        Log.d(LOG_TAG, "Button clicked!");
+        Intent intent = new Intent(this, SendActivity.class);
+        String message = mMessageEditText.getText().toString();
+        intent.putExtra(EXTRA_MESSAGE, message);
+        startActivityForResult(intent, TEXT_REQUEST);
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == TEXT_REQUEST) {
+            if (resultCode == RESULT_OK) {
+                String reply = data.getStringExtra(SendActivity.EXTRA_REPLY);
+
+                mReplyHeadTextView.setVisibility(View.VISIBLE);
+                mReplyTextView.setText(reply);
+                mReplyTextView.setVisibility(View.VISIBLE);
+            }
+        }
+    }
+}
+```
+
 ## 5. Intent (Implisit)
 
 - Java
@@ -758,240 +1270,6 @@ dependencies {
 
 - Setelah itu klik Sync now
 
-
-- java
-
-- MainActivity.java
-```
-package com.tablayout;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.viewpager2.widget.ViewPager2;
-
-import android.annotation.SuppressLint;
-import android.graphics.drawable.ColorDrawable;
-import android.os.Bundle;
-
-import com.google.android.material.tabs.TabLayout;
-
-import java.util.Objects;
-
-public class MainActivity extends AppCompatActivity {
-
-    TabLayout tabLayout;
-    ViewPager2 viewPager2;
-    ViewAdapter adapter;
-
-    @SuppressLint("NewApi")
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getColor(R.color.blue)));
-
-        tabLayout = findViewById(R.id.tab);
-        viewPager2 = findViewById(R.id.view);
-        adapter = new ViewAdapter(this);
-        viewPager2.setAdapter(adapter);
-
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager2.setCurrentItem(tab.getPosition());
-            }
-
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
-
-            }
-
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
-
-            }
-        });
-
-        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
-            @Override
-            public void onPageSelected(int position) {
-                super.onPageSelected(position);
-                tabLayout.getTabAt(position).select();
-            }
-        });
-    }
-}
-```
-
-- Membuat file fragment dengan cara klik kanan pada MainActivity.java lalu pilih dan klik fragment, setelah itu kita pilih dan klik fragment (Blank), setelah itu kita beri nama ActionFragment, ComedyFragment, RomanceFragment. Untuk file fragment sudah sekaligus dengan file layout xml nya (code berada pada bagian res layout)
-
-- ActionFragment.java :
-```
-package com.tablayout;
-
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-
-public class ActionFragment extends Fragment {
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_action, container, false);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_tab, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.tab_action) {
-            Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT)
-                    .show();
-        }
-        return true;
-    }
-}
-```
-
-- ComedyFragment.java :
-```
-package com.tablayout;
-
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-public class ComedyFragment extends Fragment {
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_comedy, container, false);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_tab, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.tab_comedy) {
-            Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT)
-                    .show();
-        }
-        return true;
-    }
-}
-```
-
-- RomanceFragment.java :
-```
-package com.tablayout;
-
-import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
-import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.Toast;
-
-
-public class RomanceFragment extends Fragment {
-
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        setHasOptionsMenu(true);
-        return inflater.inflate(R.layout.fragment_romance, container, false);
-    }
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.menu_tab, menu);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        if (item.getItemId() == R.id.tab_romance) {
-            Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT)
-                    .show();
-        }
-        return true;
-    }
-}
-```
-
-- Lalu buat java class dengan nama ViewAdapter.java, yang berisi code :
-
-  
-```
-package com.tablayout;
-
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentActivity;
-import androidx.viewpager2.adapter.FragmentStateAdapter;
-
-public class ViewAdapter extends FragmentStateAdapter {
-    public ViewAdapter(@NonNull FragmentActivity fragmentActivity) {
-        super(fragmentActivity);
-    }
-
-    @NonNull
-    @Override
-    public Fragment createFragment(int position) {
-        switch (position){
-            case 0:
-                return new ActionFragment();
-            case 1:
-                return new ComedyFragment();
-            case 2:
-                return new RomanceFragment();
-            default:
-                return new ActionFragment();
-        }
-    }
-
-    @Override
-    public int getItemCount() {
-        return 3;
-    }
-}
-```
-
-- values
-
 - Colors.xml :
 ```
 <?xml version="1.0" encoding="utf-8"?>
@@ -1016,8 +1294,6 @@ public class ViewAdapter extends FragmentStateAdapter {
 </resources>
 ```
 
-- themes
-
 - themes.xml dan themes.xml(night) (sama isi code nya) :
 ```
 <resources xmlns:tools="http://schemas.android.com/tools">
@@ -1041,7 +1317,7 @@ public class ViewAdapter extends FragmentStateAdapter {
 </resources>
 ```
 
-- layout
+- Layout
 
 - activity_main.xml :
 ```
@@ -1411,107 +1687,97 @@ public class ViewAdapter extends FragmentStateAdapter {
 </menu>
 ```
 
-## 7. Exoplayer
+- java
 
-- Java
-
-- VideoPlayerActivity
+- MainActivity.java
 ```
-package com.tiaraapps;
+package com.tablayout;
 
-import android.net.Uri;
-import android.os.Bundle;
-import android.widget.MediaController;
-import android.widget.VideoView;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.viewpager2.widget.ViewPager2;
 
-public class VideoPlayerActivity extends AppCompatActivity {
+import android.annotation.SuppressLint;
+import android.graphics.drawable.ColorDrawable;
+import android.os.Bundle;
 
+import com.google.android.material.tabs.TabLayout;
+
+import java.util.Objects;
+
+public class MainActivity extends AppCompatActivity {
+
+    TabLayout tabLayout;
+    ViewPager2 viewPager2;
+    ViewAdapter adapter;
+
+    @SuppressLint("NewApi")
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_video_player);
+        setContentView(R.layout.activity_main);
 
-        // Get the video URI from the intent
-        String videoPath = getIntent().getStringExtra("VIDEO_PATH");
-        Uri uri = Uri.parse(videoPath);
+        Objects.requireNonNull(getSupportActionBar()).setBackgroundDrawable(new ColorDrawable(getColor(R.color.blue)));
 
-        // Set up VideoView
-        VideoView videoView = findViewById(R.id.videoView);
-        videoView.setVideoURI(uri);
+        tabLayout = findViewById(R.id.tab);
+        viewPager2 = findViewById(R.id.view);
+        adapter = new ViewAdapter(this);
+        viewPager2.setAdapter(adapter);
 
-        // Set up MediaController
-        MediaController mediaController = new MediaController(this);
-        mediaController.setAnchorView(videoView);
-        videoView.setMediaController(mediaController);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager2.setCurrentItem(tab.getPosition());
+            }
 
-        // Start playing the video
-        videoView.start();
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager2.registerOnPageChangeCallback(new ViewPager2.OnPageChangeCallback() {
+            @Override
+            public void onPageSelected(int position) {
+                super.onPageSelected(position);
+                tabLayout.getTabAt(position).select();
+            }
+        });
     }
 }
 ```
 
-- ActionActivity
- ```
-package com.tiaraapps;
+- Membuat file fragment dengan cara klik kanan pada MainActivity.java lalu pilih dan klik fragment, setelah itu kita pilih dan klik fragment (Blank), setelah itu kita beri nama ActionFragment, ComedyFragment, RomanceFragment. Untuk file fragment sudah sekaligus dengan file layout xml nya (code berada pada bagian res layout)
 
-import android.content.Intent;
+- ActionFragment.java :
+```
+package com.tablayout;
+
 import android.os.Bundle;
-import android.util.Log;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 
 public class ActionFragment extends Fragment {
-
-    private static final String TAG = "ActionFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        View view = inflater.inflate(R.layout.fragment_action, container, false);
-
-        // Find the button by its ID
-        Button avatarButton = view.findViewById(R.id.avatar);
-        Button theflashButton = view.findViewById(R.id.theflash);
-        Button drstrangeButton = view.findViewById(R.id.drstrange);
-
-        // Set click listener for each button
-        avatarButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Avenger button clicked");
-                playVideo(R.raw.avatar);
-            }
-        });
-
-        theflashButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "MyName button clicked");
-                playVideo(R.raw.theflash);
-            }
-        });
-
-        drstrangeButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Spiderman button clicked");
-                playVideo(R.raw.drstrange);
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_action, container, false);
     }
 
     @Override
@@ -1527,76 +1793,33 @@ public class ActionFragment extends Fragment {
         }
         return true;
     }
-
-    private void playVideo(int videoResource) {
-        String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + videoResource;
-        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-        intent.putExtra("VIDEO_PATH", videoPath);
-        startActivity(intent);
-    }
 }
 ```
 
-- ComedyActivity
- ```
-package com.tiaraapps;
+- ComedyFragment.java :
+```
+package com.tablayout;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
-
 public class ComedyFragment extends Fragment {
-
-    private static final String TAG = "ComedyFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        View view = inflater.inflate(R.layout.fragment_comedy, container, false);
-
-        // Find the button by its ID
-        Button mystupidbossButton = view.findViewById(R.id.mystupidboss);
-        Button orangkayabaruButton = view.findViewById(R.id.okb);
-        Button susahsinyalButton = view.findViewById(R.id.susahsinyal);
-
-        // Set click listener for each button
-        mystupidbossButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Mt stupid boss button clicked");
-                playVideo(R.raw.mystupidboss);
-            }
-        });
-
-        orangkayabaruButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Orang kaya baru button clicked");
-                playVideo(R.raw.orangkayabaru);
-            }
-        });
-
-        susahsinyalButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Susah sinyal button clicked");
-                playVideo(R.raw.susahsinyal);
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_comedy, container, false);
     }
 
     @Override
@@ -1612,78 +1835,35 @@ public class ComedyFragment extends Fragment {
         }
         return true;
     }
-
-    private void playVideo(int videoResource) {
-        String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + videoResource;
-        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-        intent.putExtra("VIDEO_PATH", videoPath);
-        startActivity(intent);
-    }
 }
 ```
 
-- RomanceActivity
+- RomanceFragment.java :
 ```
-package com.tiaraapps;
+package com.tablayout;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+
+import androidx.fragment.app.Fragment;
+
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Toast;
 
-import androidx.fragment.app.Fragment;
 
 public class RomanceFragment extends Fragment {
-
-    private static final String TAG = "RomanceFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         setHasOptionsMenu(true);
-        View view = inflater.inflate(R.layout.fragment_romance, container, false);
-
-        // Find the button by its ID
-        Button ayatayatcinta2Button = view.findViewById(R.id.ayatayatcinta2);
-        Button ilyfrom38000ftButton = view.findViewById(R.id.iloveyoufrom38000ft);
-        Button ketikaberhentidisniButton = view.findViewById(R.id.ketikaberhentidisini);
-
-        // Set click listener for each button
-        ayatayatcinta2Button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Ayat ayat cinta 2 button clicked");
-                playVideo(R.raw.ayatayatcinta2);
-            }
-        });
-
-        ilyfrom38000ftButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "I love from 38.000 ft button clicked");
-                playVideo(R.raw.ilyfrom38000ft);
-            }
-        });
-
-        ketikaberhentidisniButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Log.d(TAG, "Ketika berhenti disini button clicked");
-                playVideo(R.raw.ketikaberhentidisini);
-            }
-        });
-
-        return view;
+        return inflater.inflate(R.layout.fragment_romance, container, false);
     }
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         inflater.inflate(R.menu.menu_tab, menu);
@@ -1697,15 +1877,48 @@ public class RomanceFragment extends Fragment {
         }
         return true;
     }
+}
+```
 
-    private void playVideo(int videoResource) {
-        String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + videoResource;
-        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
-        intent.putExtra("VIDEO_PATH", videoPath);
-        startActivity(intent);
+- Lalu buat java class dengan nama ViewAdapter.java, yang berisi code :
+
+  
+```
+package com.tablayout;
+
+import androidx.annotation.NonNull;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentActivity;
+import androidx.viewpager2.adapter.FragmentStateAdapter;
+
+public class ViewAdapter extends FragmentStateAdapter {
+    public ViewAdapter(@NonNull FragmentActivity fragmentActivity) {
+        super(fragmentActivity);
+    }
+
+    @NonNull
+    @Override
+    public Fragment createFragment(int position) {
+        switch (position){
+            case 0:
+                return new ActionFragment();
+            case 1:
+                return new ComedyFragment();
+            case 2:
+                return new RomanceFragment();
+            default:
+                return new ActionFragment();
+        }
+    }
+
+    @Override
+    public int getItemCount() {
+        return 3;
     }
 }
 ```
+
+## 7. Exoplayer
 
 - Layout
   
@@ -1727,7 +1940,7 @@ public class RomanceFragment extends Fragment {
 </RelativeLayout>
 ```
 
-- activity_action.xml
+- fragment_action.xml
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
@@ -1880,7 +2093,7 @@ public class RomanceFragment extends Fragment {
 </RelativeLayout>
 ```
 
-- activity_comedy.xml
+- fragment_comedy.xml
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
@@ -2024,7 +2237,7 @@ public class RomanceFragment extends Fragment {
 </RelativeLayout>
 ```
 
-- activity_romance
+- fragment_romance
 ```
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout
@@ -2170,6 +2383,300 @@ public class RomanceFragment extends Fragment {
         android:onClick="playKetikaberhentidisiniTrailer"/>
 
 </RelativeLayout>
+```
+
+- Java
+
+- VideoPlayerActivity
+```
+package com.tiaraapps;
+
+import android.net.Uri;
+import android.os.Bundle;
+import android.widget.MediaController;
+import android.widget.VideoView;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class VideoPlayerActivity extends AppCompatActivity {
+
+    @Override
+    protected void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_video_player);
+
+        // Get the video URI from the intent
+        String videoPath = getIntent().getStringExtra("VIDEO_PATH");
+        Uri uri = Uri.parse(videoPath);
+
+        // Set up VideoView
+        VideoView videoView = findViewById(R.id.videoView);
+        videoView.setVideoURI(uri);
+
+        // Set up MediaController
+        MediaController mediaController = new MediaController(this);
+        mediaController.setAnchorView(videoView);
+        videoView.setMediaController(mediaController);
+
+        // Start playing the video
+        videoView.start();
+    }
+}
+```
+
+- ActionFragment
+ ```
+package com.tiaraapps;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+public class ActionFragment extends Fragment {
+
+    private static final String TAG = "ActionFragment";
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        View view = inflater.inflate(R.layout.fragment_action, container, false);
+
+        // Find the button by its ID
+        Button avatarButton = view.findViewById(R.id.avatar);
+        Button theflashButton = view.findViewById(R.id.theflash);
+        Button drstrangeButton = view.findViewById(R.id.drstrange);
+
+        // Set click listener for each button
+        avatarButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Avenger button clicked");
+                playVideo(R.raw.avatar);
+            }
+        });
+
+        theflashButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "MyName button clicked");
+                playVideo(R.raw.theflash);
+            }
+        });
+
+        drstrangeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Spiderman button clicked");
+                playVideo(R.raw.drstrange);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_tab, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.tab_action) {
+            Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT)
+                    .show();
+        }
+        return true;
+    }
+
+    private void playVideo(int videoResource) {
+        String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + videoResource;
+        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
+        intent.putExtra("VIDEO_PATH", videoPath);
+        startActivity(intent);
+    }
+}
+```
+
+- ComedyFragment
+ ```
+package com.tiaraapps;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+public class ComedyFragment extends Fragment {
+
+    private static final String TAG = "ComedyFragment";
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        View view = inflater.inflate(R.layout.fragment_comedy, container, false);
+
+        // Find the button by its ID
+        Button mystupidbossButton = view.findViewById(R.id.mystupidboss);
+        Button orangkayabaruButton = view.findViewById(R.id.okb);
+        Button susahsinyalButton = view.findViewById(R.id.susahsinyal);
+
+        // Set click listener for each button
+        mystupidbossButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Mt stupid boss button clicked");
+                playVideo(R.raw.mystupidboss);
+            }
+        });
+
+        orangkayabaruButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Orang kaya baru button clicked");
+                playVideo(R.raw.orangkayabaru);
+            }
+        });
+
+        susahsinyalButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Susah sinyal button clicked");
+                playVideo(R.raw.susahsinyal);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_tab, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.tab_comedy) {
+            Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT)
+                    .show();
+        }
+        return true;
+    }
+
+    private void playVideo(int videoResource) {
+        String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + videoResource;
+        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
+        intent.putExtra("VIDEO_PATH", videoPath);
+        startActivity(intent);
+    }
+}
+```
+
+- RomanceFragment
+```
+package com.tiaraapps;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+public class RomanceFragment extends Fragment {
+
+    private static final String TAG = "RomanceFragment";
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
+        setHasOptionsMenu(true);
+        View view = inflater.inflate(R.layout.fragment_romance, container, false);
+
+        // Find the button by its ID
+        Button ayatayatcinta2Button = view.findViewById(R.id.ayatayatcinta2);
+        Button ilyfrom38000ftButton = view.findViewById(R.id.iloveyoufrom38000ft);
+        Button ketikaberhentidisniButton = view.findViewById(R.id.ketikaberhentidisini);
+
+        // Set click listener for each button
+        ayatayatcinta2Button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Ayat ayat cinta 2 button clicked");
+                playVideo(R.raw.ayatayatcinta2);
+            }
+        });
+
+        ilyfrom38000ftButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "I love from 38.000 ft button clicked");
+                playVideo(R.raw.ilyfrom38000ft);
+            }
+        });
+
+        ketikaberhentidisniButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Log.d(TAG, "Ketika berhenti disini button clicked");
+                playVideo(R.raw.ketikaberhentidisini);
+            }
+        });
+
+        return view;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.menu_tab, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.tab_romance) {
+            Toast.makeText(getActivity(), "Clicked on " + item.getTitle(), Toast.LENGTH_SHORT)
+                    .show();
+        }
+        return true;
+    }
+
+    private void playVideo(int videoResource) {
+        String videoPath = "android.resource://" + getActivity().getPackageName() + "/" + videoResource;
+        Intent intent = new Intent(getActivity(), VideoPlayerActivity.class);
+        intent.putExtra("VIDEO_PATH", videoPath);
+        startActivity(intent);
+    }
+}
 ```
 
 # Selesai, Terima kasih
