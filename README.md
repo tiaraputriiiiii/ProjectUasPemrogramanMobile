@@ -93,6 +93,8 @@ public class SplashScreen extends AppCompatActivity {
 
 ## Menu Utama
 
+![menu](https://github.com/tiaraputriiiiii/ProjectUasPemrogramanMobile/assets/115775237/ab22405c-003e-4db8-870c-825e21f2019d)
+
 - Layout
 
 - activity_menu.xml
@@ -2678,5 +2680,11 @@ public class RomanceFragment extends Fragment {
     }
 }
 ```
+
+
+
+https://github.com/tiaraputriiiiii/ProjectUasPemrogramanMobile/assets/115775237/78cb3e12-b2e5-4f7a-a968-58136c45367f
+
+
 
 # Selesai, Terima kasih
